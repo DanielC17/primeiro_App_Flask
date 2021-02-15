@@ -8,4 +8,3 @@ def ola():
     return render_template('lista.html')
 
 app.run()
-Users/DKs/PycharmProjects/Flask
