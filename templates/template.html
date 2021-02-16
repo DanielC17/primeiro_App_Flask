@@ -9,6 +9,16 @@
 <body>
     <div class="container">
       <div class="page-header">
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul id="messages" class="list-unstyled">
+                {% for message in messages %}
+                    <li class="alert alert-success">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+          {% endwith %}
+
           <h1>{{ titulo }}</h1>
       </div>
         <!-- utilizando o jinja2 para fazer com que o conteudo das outras paginas se encaixe aqui -->
