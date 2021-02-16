@@ -26,7 +26,7 @@ def novo():
     return render_template('novo.html', titulo='Novo Jogo')
 
 
-@app.route('/criar', methods=['POST', ]) #configurando a rota para o metodo post.
+@app.route('/criar', methods=['POST', ])  # configurando a rota para o metodo post.
 # Tratar os dados dos clientes ( recebendo o jogo de NOVO e adicionando na lista)
 def criar():
     nome = request.form['nome']
@@ -34,7 +34,21 @@ def criar():
     console = request.form['console']
     jogo = Jogo(nome, categoria, console)
     lista.append(jogo)
-    return redirect('/') #redirecionamento de rota.
+    return redirect('/')  # redirecionamento de rota.
 
 
-app.run(debug=True) #reload na aplicação com o debug.
+@app.route('/login')
+def login():
+    return render_template('login.html')  # adicionando rota para o formulario de login
+
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+    if 'senhaMestra' == request.form['senha']:  #verificando os dados (senha) passados pelo formulario .
+        return redirect('/')
+    else:
+        print("Voce errou a senha tente novamente")
+        return redirect('/login')
+
+
+app.run(debug=True)  # reload na aplicação com o debug.
