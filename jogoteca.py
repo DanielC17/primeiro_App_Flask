@@ -27,7 +27,7 @@ def novo():
 
 
 @app.route('/criar', methods=['POST', ]) #configurando a rota para o metodo post.
-# Tratar o dado do cliente ( recebendo o jogo novo e adicionando na lista)
+# Tratar os dados dos clientes ( recebendo o jogo novo e adicionando na lista)
 def criar():
     nome = request.form['nome']
     categoria = request.form['categoria']
