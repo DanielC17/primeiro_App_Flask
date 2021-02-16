@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash
 
 app = Flask(__name__)
+app.secret_key = 'DKS'
 
 
 class Jogo:
@@ -44,10 +45,12 @@ def login():
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-    if 'senhaMestra' == request.form['senha']:  #verificando os dados (senha) passados pelo formulario .
+    if 'senhaMestra' == request.form['senha']:  # verificando os dados (senha) passados pelo formulario .
+        session['usuario_logado'] = request.form['usuario']
+        flash(request.form['usuario'] + ' Logou com sucesso!') #passando mensagem de verificação de login
         return redirect('/')
     else:
-        print("Voce errou a senha tente novamente")
+        flash(request.form['usuario'] + " Nome ou senha invalidos")
         return redirect('/login')
 
 
